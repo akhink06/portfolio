@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+.homepage-header {
+  background: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.homepage-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 0.3em;
+  background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcc02, #ff6b35);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: currentGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 10;
+  letter-spacing: 0.1em;
+  filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.6));
+}
+
+.homepage-designation {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 1em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #61dafb, #21d4fd, #b721ff, #61dafb);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: voltageFlicker 1.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(97, 218, 251, 0.5));
+}
+
+/* Keyframe animations */
+@keyframes currentGlow {
+  0% { 
+    filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.6));
+    background-position: 0% 50%;
+  }
+  100% { 
+    filter: drop-shadow(0 0 25px rgba(255, 107, 53, 0.9));
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes voltageFlicker {
+  0% { 
+    filter: drop-shadow(0 0 10px rgba(97, 218, 251, 0.5));
+    background-position: 0% 50%;
+  }
+  100% { 
+    filter: drop-shadow(0 0 20px rgba(97, 218, 251, 0.8));
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .homepage-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  
+  .homepage-designation {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+  
+  .social-icons {
+    gap: 0.8rem;
+    bottom: 8%;
+  }
+  
+  .social-icons .social-icon {
+    width: 35px !important;
+    height: 35px !important;
+    margin: 0 5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-header {
+    padding: 1rem;
+  }
+  
+  .homepage-title {
+    font-size: clamp(1.8rem, 12vw, 2.5rem);
+  }
+  
+  .homepage-designation {
+    font-size: clamp(0.9rem, 6vw, 1.2rem);
+  }
+  
+  .social-icons {
+    gap: 0.5rem;
+    bottom: 6%;
+  }
+  
+  .social-icons .social-icon {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 3px !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .homepage-header {
+    background: #000;
+  }
+  
+  .homepage-title {
+    -webkit-text-fill-color: #ff6b35;
+    color: #ff6b35;
+  }
+  
+  .homepage-designation {
+    -webkit-text-fill-color: #61dafb;
+    color: #61dafb;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .homepage-title,
+  .homepage-designation {
+    animation: none;
+  }
+}
