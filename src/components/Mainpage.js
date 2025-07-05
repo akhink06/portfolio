@@ -178,7 +178,7 @@ function Mainpage() {
   };
 
   const handleEmailClick = () => {
-    window.open(`mailto:${personalInfo.email}`, '_blank');
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=akhinkakhin@gmail.com', '_blank');
   };
 
   const handlePhoneClick = () => {
@@ -225,11 +225,20 @@ function Mainpage() {
           
           <div className="contact-actions">
             <button className="contact-btn" onClick={handleEmailClick}>
-              📧 Send Email
+              Send Email
             </button>
             <button className="contact-btn" onClick={handlePhoneClick}>
-              📞 Call Now
+              Call Now
             </button>
+            <a 
+              href="/AKHIN K Mobile App Developer.pdf" 
+              className="contact-btn download-cv-btn"
+              download="AKHIN_K_Mobile_App_Developer_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download CV
+            </a>
           </div>
         </div>
       </div>
