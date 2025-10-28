@@ -16,7 +16,8 @@ function Mainpage() {
         'Personal Interests',
         'Career Objectives',
         'Contact Details'
-      ]
+      ],
+      color: 'blue'
     },
     {
       id: 'technical-skills',
@@ -28,7 +29,8 @@ function Mainpage() {
         'Backend Technologies',
         'Mobile App Development',
         'Database Management'
-      ]
+      ],
+      color: 'purple'
     },
     {
       id: 'professional-experience',
@@ -40,7 +42,8 @@ function Mainpage() {
         'Key Projects',
         'Achievements',
         'Client Testimonials'
-      ]
+      ],
+      color: 'green'
     },
     {
       id: 'education',
@@ -52,7 +55,8 @@ function Mainpage() {
         'Certifications',
         'Online Courses',
         'Professional Development'
-      ]
+      ],
+      color: 'orange'
     }
   ];
 
@@ -64,68 +68,55 @@ function Mainpage() {
     role: 'Full Stack & Mobile App Developer'
   };
 
-  const skillCategories = [
-    {
-      id: 'mobile',
-      icon: '📱',
+  const skills = {
+    frontend: {
+      title: 'Frontend Development',
+      description: 'Creating beautiful and responsive user interfaces',
+      skills: [
+        { name: 'React.js', proficiency: 90 },
+        { name: 'HTML/CSS', proficiency: 95 },
+        { name: 'JavaScript', proficiency: 85 },
+        { name: 'Bootstrap', proficiency: 80 }
+      ]
+    },
+    backend: {
+      title: 'Backend Development',
+      description: 'Building robust server-side applications',
+      skills: [
+        { name: 'Python', proficiency: 85 },
+        { name: 'Django', proficiency: 80 },
+        { name: 'Node.js', proficiency: 75 },
+        { name: 'Express.js', proficiency: 70 }
+      ]
+    },
+    mobile: {
       title: 'Mobile Development',
-      description: 'Cross-platform mobile application development using modern frameworks',
+      description: 'Developing cross-platform mobile applications',
       skills: [
-        { name: 'React Native', description: 'Cross-platform mobile development framework', proficiency: 85 },
-        { name: 'FlutterFlow', description: 'Visual app development platform for Flutter', proficiency: 75 }
+        { name: 'React Native', proficiency: 85 },
+        { name: 'FlutterFlow', proficiency: 80 },
+        { name: 'Flutter', proficiency: 75 },
+        { name: 'iOS/Android', proficiency: 70 }
       ]
     },
-    {
-      id: 'frontend',
-      icon: '🎨',
-      title: 'Frontend Technologies',
-      description: 'Modern web technologies for creating responsive user interfaces',
+    tools: {
+      title: 'Development Tools',
+      description: 'Essential tools for modern development workflow',
       skills: [
-        { name: 'HTML, CSS, JavaScript', description: 'Core web technologies and modern ES6+ features', proficiency: 90 },
-        { name: 'React.js', description: 'Popular JavaScript library for building user interfaces', proficiency: 88 },
-        { name: 'Bootstrap', description: 'CSS framework for responsive web design', proficiency: 85 }
-      ]
-    },
-    {
-      id: 'backend',
-      icon: '⚙️',
-      title: 'Backend Technologies',
-      description: 'Server-side development and database management',
-      skills: [
-        { name: 'Python Programming', description: 'Object-oriented programming and automation', proficiency: 85 },
-        { name: 'Django Framework', description: 'High-level Python web framework', proficiency: 80 }
-      ]
-    },
-    {
-      id: 'tools',
-      icon: '🔧',
-      title: 'Development Tools & Concepts',
-      description: 'Modern development practices and methodologies',
-      skills: [
-        { name: 'Full Stack Development', description: 'End-to-end web application development', proficiency: 85 },
-        { name: 'Cross-platform Mobile Applications', description: 'Building apps for multiple platforms', proficiency: 80 },
-        { name: 'Responsive Web Design', description: 'Creating adaptive layouts for all devices', proficiency: 88 }
-      ]
-    },
-    {
-      id: 'management',
-      icon: '📊',
-      title: 'Project Management & Version Control',
-      description: 'Project management tools and collaborative development',
-      skills: [
-        { name: 'Git & GitLab', description: 'Version control and collaborative development', proficiency: 85 },
-        { name: 'Taiga', description: 'Agile project management platform', proficiency: 75 },
-        { name: 'Jira', description: 'Issue tracking and agile project management', proficiency: 70 }
+        { name: 'Git & GitLab', proficiency: 90 },
+        { name: 'Taiga', proficiency: 85 },
+        { name: 'Jira', proficiency: 80 },
+        { name: 'VS Code', proficiency: 95 }
       ]
     }
-  ];
+  };
 
-  const professionalExperience = [
+  const experience = [
     {
       title: 'Mobile App Developer',
       company: 'Tegain Private Limited',
       duration: '1.5 Years',
-      responsibilities: [
+      details: [
         'Developed cross-platform mobile applications using React Native and FlutterFlow',
         'Collaborated with development teams to deliver high-quality mobile solutions',
         'Implemented user-friendly interfaces and optimized app performance',
@@ -137,12 +128,11 @@ function Mainpage() {
       title: 'Full Stack Developer (Internship)',
       company: 'Stey Private Limited',
       duration: '1 Year',
-      responsibilities: [
+      details: [
         'Developed end-to-end web applications using modern technology stack',
         'Built responsive frontend interfaces using HTML, CSS, JavaScript, Bootstrap, and React.js',
         'Implemented backend solutions using Python and Django framework',
-        'Gained hands-on experience in React Native for mobile development',
-        'Managed code repositories using Git and GitLab for version control'
+        'Gained hands-on experience in React Native for mobile development'
       ]
     }
   ];
@@ -160,11 +150,11 @@ function Mainpage() {
     }
   ];
 
-  const handleCardClick = (sectionId) => {
+  const handleSpotlightClick = (sectionId) => {
     setSelectedSection(sectionId);
   };
 
-  const closeModal = () => {
+  const closeSpotlightDetail = () => {
     setSelectedSection(null);
     setSelectedSkillCategory(null);
   };
@@ -185,129 +175,236 @@ function Mainpage() {
     window.open(`tel:${personalInfo.phone}`, '_blank');
   };
 
-  const renderPersonalInfoModal = () => (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2 className="modal-title">Personal Information</h2>
-          <button className="close-button" onClick={closeModal}>×</button>
-        </div>
-        
-        <div className="detail-section">
-          <div className="detail-icon">👤</div>
-          
-          <div className="personal-info-grid">
-            <div className="info-item">
-              <div className="info-label">Full Name</div>
-              <div className="info-value">{personalInfo.name}</div>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-label">Location</div>
-              <div className="info-value">{personalInfo.location}</div>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-label">Phone</div>
-              <div className="info-value phone">{personalInfo.phone}</div>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-label">Email</div>
-              <div className="info-value email">{personalInfo.email}</div>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-label">Professional Role</div>
-              <div className="info-value role">{personalInfo.role}</div>
-            </div>
-          </div>
-          
-          <div className="contact-actions">
-            <button className="contact-btn" onClick={handleEmailClick}>
-              Send Email
-            </button>
-            <button className="contact-btn" onClick={handlePhoneClick}>
-              Call Now
-            </button>
-            <a 
-              href="/AKHIN K Mobile App Developer.pdf" 
-              className="contact-btn download-cv-btn"
-              download="AKHIN_K_Mobile_App_Developer_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download CV
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const renderSpotlightDetail = () => {
+    if (!selectedSection) return null;
 
-  const renderSkillDetailModal = () => (
-    <div className="skills-detail-modal" onClick={closeSkillDetail}>
-      <div className="skills-detail-content" onClick={(e) => e.stopPropagation()}>
-        <div className="skills-detail-header">
-          <div className="skills-detail-title">
-            {selectedSkillCategory.title}
-          </div>
-          <button className="skills-detail-close" onClick={closeSkillDetail}>×</button>
-        </div>
-        
-        <div className="skills-list-detailed">
-          {selectedSkillCategory.skills.map((skill, index) => (
-            <div key={index} className="skill-item-detailed">
-              <div className="skill-item-name">{skill.name}</div>
-              <div className="skill-item-description">{skill.description}</div>
-              <div className="skill-proficiency">
-                <span className="proficiency-label">Proficiency:</span>
-                <div className="proficiency-bar">
-                  <div 
-                    className="proficiency-fill" 
-                    style={{ width: `${skill.proficiency}%` }}
-                  ></div>
+    switch (selectedSection) {
+      case 'personal-info':
+        return (
+          <div className="spotlight-detail-overlay" onClick={closeSpotlightDetail}>
+            <div className="spotlight-detail-content" onClick={(e) => e.stopPropagation()}>
+              <div className="detail-header">
+                <div className="detail-icon-wrapper">
+                  <div className="detail-icon">👤</div>
+                  <div className="icon-glow"></div>
                 </div>
-                <span className="proficiency-label">{skill.proficiency}%</span>
+                <h2 className="detail-title">Personal Information</h2>
+                <button className="detail-close" onClick={closeSpotlightDetail}>
+                  <span>×</span>
+                </button>
+              </div>
+              <div className="detail-body">
+                <div className="info-spotlight-grid">
+                  <div className="info-spotlight-item">
+                    <div className="info-glow"></div>
+                    <div className="info-content">
+                      <div className="info-label">Full Name</div>
+                      <div className="info-value">{personalInfo.name}</div>
+                    </div>
+                  </div>
+                  <div className="info-spotlight-item">
+                    <div className="info-glow"></div>
+                    <div className="info-content">
+                      <div className="info-label">Location</div>
+                      <div className="info-value">{personalInfo.location}</div>
+                    </div>
+                  </div>
+                  <div className="info-spotlight-item">
+                    <div className="info-glow"></div>
+                    <div className="info-content">
+                      <div className="info-label">Phone</div>
+                      <div className="info-value phone">{personalInfo.phone}</div>
+                    </div>
+                  </div>
+                  <div className="info-spotlight-item">
+                    <div className="info-glow"></div>
+                    <div className="info-content">
+                      <div className="info-label">Email</div>
+                      <div className="info-value email">{personalInfo.email}</div>
+                    </div>
+                  </div>
+                  <div className="info-spotlight-item">
+                    <div className="info-glow"></div>
+                    <div className="info-content">
+                      <div className="info-label">Professional Role</div>
+                      <div className="info-value role">{personalInfo.role}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="detail-actions">
+                  <button className="action-btn primary" onClick={handleEmailClick}>
+                    <span className="btn-icon">📧</span>
+                    <span>Send Email</span>
+                  </button>
+                  <button className="action-btn secondary" onClick={handlePhoneClick}>
+                    <span className="btn-icon">📞</span>
+                    <span>Call Now</span>
+                  </button>
+                  <a 
+                    href="/AKHIN K Mobile App Developer.pdf" 
+                    className="action-btn tertiary"
+                    download="AKHIN_K_Mobile_App_Developer_CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="btn-icon">📄</span>
+                    <span>Download CV</span>
+                  </a>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+          </div>
+        );
 
-  const renderTechnicalSkillsModal = () => {
-    if (selectedSkillCategory) {
-      return renderSkillDetailModal();
+      case 'technical-skills':
+        return (
+          <div className="spotlight-detail-overlay" onClick={closeSpotlightDetail}>
+            <div className="spotlight-detail-content" onClick={(e) => e.stopPropagation()}>
+              <div className="detail-header">
+                <div className="detail-icon-wrapper">
+                  <div className="detail-icon">🛠️</div>
+                  <div className="icon-glow"></div>
+                </div>
+                <h2 className="detail-title">Technical Skills</h2>
+                <button className="detail-close" onClick={closeSpotlightDetail}>
+                  <span>×</span>
+                </button>
+              </div>
+              <div className="detail-body">
+                <div className="skills-spotlight-grid">
+                  {Object.entries(skills).map(([key, skill]) => (
+                    <div key={key} className="skill-spotlight-item" onClick={() => handleSkillCategoryClick(key)}>
+                      <div className="skill-glow"></div>
+                      <div className="skill-content">
+                        <h3 className="skill-title">{skill.title}</h3>
+                        <p className="skill-description">{skill.description}</p>
+                        <div className="skill-preview">
+                          {skill.skills.slice(0, 2).map((skillItem, index) => (
+                            <span key={index} className="skill-tag">
+                              {skillItem.name}
+                            </span>
+                          ))}
+                          <span className="skill-more">+{skill.skills.length - 2} more</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'professional-experience':
+        return (
+          <div className="spotlight-detail-overlay" onClick={closeSpotlightDetail}>
+            <div className="spotlight-detail-content" onClick={(e) => e.stopPropagation()}>
+              <div className="detail-header">
+                <div className="detail-icon-wrapper">
+                  <div className="detail-icon">💼</div>
+                  <div className="icon-glow"></div>
+                </div>
+                <h2 className="detail-title">Professional Experience</h2>
+                <button className="detail-close" onClick={closeSpotlightDetail}>
+                  <span>×</span>
+                </button>
+              </div>
+              <div className="detail-body">
+                <div className="experience-spotlight-timeline">
+                  {experience.map((exp, index) => (
+                    <div key={index} className="experience-spotlight-item">
+                      <div className="experience-glow"></div>
+                      <div className="experience-content">
+                        <div className="experience-header">
+                          <h3 className="job-title">{exp.title}</h3>
+                          <span className="duration-badge">{exp.duration}</span>
+                        </div>
+                        <div className="company-name">{exp.company}</div>
+                        <div className="experience-details">
+                          {exp.details.map((detail, detailIndex) => (
+                            <div key={detailIndex} className="detail-item">
+                              <span className="detail-bullet">→</span>
+                              <span className="detail-text">{detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'education':
+        return (
+          <div className="spotlight-detail-overlay" onClick={closeSpotlightDetail}>
+            <div className="spotlight-detail-content" onClick={(e) => e.stopPropagation()}>
+              <div className="detail-header">
+                <div className="detail-icon-wrapper">
+                  <div className="detail-icon">🎓</div>
+                  <div className="icon-glow"></div>
+                </div>
+                <h2 className="detail-title">Education</h2>
+                <button className="detail-close" onClick={closeSpotlightDetail}>
+                  <span>×</span>
+                </button>
+              </div>
+              <div className="detail-body">
+                <div className="education-spotlight-grid">
+                  {education.map((edu, index) => (
+                    <div key={index} className="education-spotlight-item">
+                      <div className="education-glow"></div>
+                      <div className="education-content">
+                        <h3 className="degree-title">{edu.degree}</h3>
+                        <div className="institution-name">{edu.institution}</div>
+                        <div className="year-badge">{edu.year}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
     }
+  };
+
+  const renderSkillDetail = () => {
+    if (!selectedSkillCategory) return null;
+
+    const skill = skills[selectedSkillCategory];
+    if (!skill) return null;
 
     return (
-      <div className="modal-overlay" onClick={closeModal}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-header">
-            <h2 className="modal-title">Technical Skills</h2>
-            <button className="close-button" onClick={closeModal}>×</button>
+      <div className="skill-detail-overlay" onClick={closeSkillDetail}>
+        <div className="skill-detail-content" onClick={(e) => e.stopPropagation()}>
+          <div className="skill-detail-header">
+            <h3 className="skill-detail-title">{skill.title}</h3>
+            <button className="skill-detail-close" onClick={closeSkillDetail}>
+              <span>×</span>
+            </button>
           </div>
-          
-          <div className="detail-section">
-            <div className="detail-icon">🛠️</div>
-            
-            <div className="skills-grid">
-              {skillCategories.map((category) => (
-                <div 
-                  key={category.id} 
-                  className="skill-category"
-                >
-                  <h4 className="skill-category-title">{category.title}</h4>
-                  <p className="skill-category-description">{category.description}</p>
-                  <button 
-                    className="expand-chevron-btn"
-                    aria-label={`View details for ${category.title}`}
-                    onClick={(e) => { e.stopPropagation(); handleSkillCategoryClick(category); }}
-                  >
-                    <span className="chevron-circle">›</span>
-                  </button>
+          <div className="skill-detail-body">
+            <p className="skill-detail-description">{skill.description}</p>
+            <div className="skills-list-detailed">
+              {skill.skills.map((skillItem, index) => (
+                <div key={index} className="skill-item-detailed">
+                  <div className="skill-item-name">{skillItem.name}</div>
+                  <div className="skill-proficiency">
+                    <span className="proficiency-label">Proficiency</span>
+                    <div className="proficiency-bar">
+                      <div 
+                        className="proficiency-fill" 
+                        style={{ width: `${skillItem.proficiency}%` }}
+                      ></div>
+                    </div>
+                    <span className="proficiency-percentage">{skillItem.proficiency}%</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -317,108 +414,75 @@ function Mainpage() {
     );
   };
 
-  const renderExperienceModal = () => (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2 className="modal-title">Professional Experience</h2>
-          <button className="close-button" onClick={closeModal}>×</button>
-        </div>
-        
-        <div className="detail-section">
-          <div className="experience-timeline">
-            {professionalExperience.map((job, index) => (
-              <div key={index} className="experience-item">
-                <div className="experience-header">
-                  <h4 className="job-title">{job.title}</h4>
-                  <div className="company-info">{job.company}</div>
-                  <div className="duration">{job.duration}</div>
-                </div>
-                <ul className="experience-details">
-                  {job.responsibilities.map((responsibility, idx) => (
-                    <li key={idx}>{responsibility}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderEducationModal = () => (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2 className="modal-title">Education</h2>
-          <button className="close-button" onClick={closeModal}>×</button>
-        </div>
-        
-        <div className="detail-section">
-          <div className="detail-icon">🎓</div>
-          
-          <div className="education-grid">
-            {education.map((edu, index) => (
-              <div key={index} className="education-item">
-                <h4 className="degree-title">{edu.degree}</h4>
-                <div className="institution">{edu.institution}</div>
-                <div className="year">{edu.year}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderModal = () => {
-    switch(selectedSection) {
-      case 'personal-info':
-        return renderPersonalInfoModal();
-      case 'technical-skills':
-        return renderTechnicalSkillsModal();
-      case 'professional-experience':
-        return renderExperienceModal();
-      case 'education':
-        return renderEducationModal();
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="mainpage-container">
-      <h1 className="mainpage-title">Portfolio Overview</h1>
-      <p className="mainpage-description">
-        Explore different aspects of my professional journey and technical expertise
-      </p>
-      
-      <div className="portfolio-grid">
-        {portfolioSections.map((section) => (
-          <div 
-            key={section.id}
-            className="grid-card"
-            onClick={() => handleCardClick(section.id)}
-          >
-            <div className="card-icon">
-              {section.icon}
-            </div>
-            <h3 className="card-title">{section.title}</h3>
-            <p className="card-description">{section.description}</p>
-            <ul className="card-features">
-              {section.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-            <button className="view-more-btn">
-              View Details
-            </button>
+    <div className="mainpage">
+      {/* Navigation */}
+      <nav className="navbar">
+        <div className="nav-container">
+          <button className="back-btn" onClick={() => window.history.back()}>
+            ← Back
+          </button>
+          <div className="nav-logo">
+            <span className="logo-text">AK</span>
           </div>
-        ))}
-      </div>
+          <div className="nav-links">
+            <button className="nav-link" onClick={() => window.location.href = '/'}>Home</button>
+            <button className="nav-link" onClick={() => window.location.href = '/profile'}>About</button>
+          </div>
+        </div>
+      </nav>
 
-      {selectedSection && renderModal()}
+      {/* Main Content */}
+      <div className="mainpage-container">
+        <div className="page-header">
+          <h1 className="mainpage-title">Portfolio Overview</h1>
+          <p className="mainpage-description">
+            Explore different aspects of my professional journey and technical expertise
+          </p>
+        </div>
+        
+        <div className="spotlight-grid">
+          {portfolioSections.map((section, index) => (
+            <div 
+              key={section.id}
+              className={`spotlight-item ${section.color}`}
+              onClick={() => handleSpotlightClick(section.id)}
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="spotlight-glow"></div>
+              <div className="spotlight-content">
+                <div className="spotlight-icon">
+                  <div className="icon-wrapper">
+                    {section.icon}
+                  </div>
+                  <div className="icon-pulse"></div>
+                </div>
+                <div className="spotlight-text">
+                  <h3 className="spotlight-title">{section.title}</h3>
+                  <p className="spotlight-description">{section.description}</p>
+                  <div className="spotlight-features">
+                    {section.features.map((feature, featureIndex) => (
+                      <span key={featureIndex} className="feature-tag">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="spotlight-action">
+                  <button className="spotlight-btn">
+                    <span>Explore</span>
+                    <div className="btn-arrow">→</div>
+                  </button>
+                </div>
+              </div>
+              <div className="spotlight-shine"></div>
+            </div>
+          ))}
+        </div>
+
+        {selectedSection && renderSpotlightDetail()}
+        {selectedSkillCategory && renderSkillDetail()}
+      </div>
     </div>
   );
 }
