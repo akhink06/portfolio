@@ -32,12 +32,12 @@ function Homepage() {
             </p>
             
             <div className="hero-actions">
-              <button className="btn btn-primary" onClick={() => navigate('/main')}>
-                Portfolio
+              <button className="btn btn-primary" onClick={() => navigate('/profile')}>
+                About Me
                 <span className="btn-icon">→</span>
               </button>
-              <button className="btn btn-secondary" onClick={() => navigate('/profile')}>
-                About Me
+              <button className="btn btn-secondary" onClick={() => navigate('/main')}>
+                Portfolio
               </button>
               <button className="btn btn-resume" onClick={() => window.open('/AKHIN K Mobile App Developer.pdf', '_blank')}>
                 Download Resume
