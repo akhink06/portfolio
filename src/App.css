@@ -82,6 +82,17 @@ h3 {
   box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
 }
 
+.btn-resume {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+.btn-resume:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
+}
+
 /* Card Styles */
 .card {
   background: white;

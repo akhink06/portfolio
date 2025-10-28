@@ -39,6 +39,9 @@ function Homepage() {
               <button className="btn btn-secondary" onClick={() => navigate('/profile')}>
                 About Me
               </button>
+              <button className="btn btn-resume" onClick={() => window.open('/AKHIN K Mobile App Developer.pdf', '_blank')}>
+                Download Resume
+              </button>
             </div>
 
             {/* Social Links */}

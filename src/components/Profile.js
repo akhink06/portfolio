@@ -163,7 +163,11 @@ function Profile() {
         <div className="profile-header">
           <div className="profile-avatar">
             <div className="avatar-circle">
-              <span className="avatar-text">AK</span>
+              <img 
+                src="/avathar.jpeg" 
+                alt="AKHIN K - Mobile App Developer" 
+                className="avatar-image"
+              />
             </div>
           </div>
           <div className="profile-info">
