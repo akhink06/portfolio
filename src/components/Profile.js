@@ -193,7 +193,7 @@ function Profile() {
           <div className="section-content">
             <div className="about-content">
               <p className="about-text">
-                Mobile App Developer with 2.5+ years of experience building high-quality
+                Mobile App Developer with 3 years of experience building high-quality
                 cross-platform apps using React Native and FlutterFlow. Passionate about
                 clean UX, performance, and reliable delivery to the App Store and Play Store.
               </p>

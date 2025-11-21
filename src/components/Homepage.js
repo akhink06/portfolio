@@ -27,7 +27,7 @@ function Homepage() {
             </h2>
             <p className="hero-description">
               I create exceptional digital experiences through innovative mobile apps.
-              With 2.5+ years of experience, I deliver reliable, high-performance apps
+              With 3 years of experience, I deliver reliable, high-performance apps
               with clean UX and modern tooling.
             </p>
             
