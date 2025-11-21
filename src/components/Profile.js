@@ -249,7 +249,7 @@ function Profile() {
                 <div className="timeline-content">
                   <div className="experience-header">
                     <h3 className="job-title">Mobile App Developer</h3>
-                    <span className="duration-badge">1.5 Years</span>
+                    <span className="duration-badge">2 Years</span>
                   </div>
                   <div className="company-info">
                     <span className="company-name">Tegain Private Limited</span>
