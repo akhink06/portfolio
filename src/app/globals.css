@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-accent: #FFFFFF;
+  --color-accent-glow: rgba(255, 255, 255, 0.4);
+  --color-muted: #86868b;
+  --color-surface: #0a0a0a;
+  --color-border: rgba(255, 255, 255, 0.1);
+  
+  --font-hero: var(--font-playfair);
+  --font-mono: var(--font-dm-mono);
+  --font-ui: var(--font-outfit);
+
+  /* The generic color swap interceptor */
+  --color-white: var(--theme-white);
+  --color-black: var(--theme-black);
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --theme-white: #ffffff;
+  --theme-black: #000000;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom utilities that are easier in plain CSS */
+.section-padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.noise-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+.glass-panel {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #86868b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.timeline-dot {
+  box-shadow: 0 0 0 4px #000;
+  transition: all 0.3s;
+}
+
+.timeline-item:hover .timeline-dot {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 15px var(--color-accent), 0 0 0 4px #000;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
+
+html {
+  cursor: none; /* Hide default cursor to use custom one */
+}
+
+a, button, [role="button"] {
+  cursor: none;
+}
+
+/* === Radial Orbital Timeline Utilities === */
+/* Animation for the pulsing effect */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation for the ping effect */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+.scale-125 {
+  transform: scale(1.25);
+}
+
+.scale-150 {
+  transform: scale(1.5);
+}
