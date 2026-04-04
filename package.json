@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "postinstall": "node scripts/patch-spline.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
